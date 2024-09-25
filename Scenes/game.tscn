@@ -1,3 +1,83 @@
-[gd_scene format=3 uid="uid://c1ghchp5wgott"]
+[gd_scene load_steps=5 format=3 uid="uid://c1ghchp5wgott"]
+
+[ext_resource type="Script" path="res://GDScripts/floor.gd" id="1_lypt3"]
+[ext_resource type="PackedScene" uid="uid://dbo7mjohyjxd7" path="res://Scenes/Inherited/StackableObject/Base/base_stackable_object.tscn" id="2_srb24"]
+[ext_resource type="Script" path="res://GDScripts/stackable_object_spawner.gd" id="3_gklty"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cay3g"]
+size = Vector2(1611, 138)
 
 [node name="Game" type="Node2D"]
+
+[node name="FLOOR" type="Area2D" parent="."]
+position = Vector2(608, 577)
+collision_mask = 2
+script = ExtResource("1_lypt3")
+
+[node name="Polygon2D" type="Polygon2D" parent="FLOOR"]
+scale = Vector2(1.93743, 0.98787)
+color = Color(0.400255, 0.0709865, 0.0012618, 1)
+offset = Vector2(-580.376, -50.1272)
+polygon = PackedVector2Array(165.362, -1, 165.362, 119, 991.645, 122, 991.645, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FLOOR"]
+position = Vector2(-3, 7)
+shape = SubResource("RectangleShape2D_cay3g")
+
+[node name="TABLE" type="StaticBody2D" parent="."]
+position = Vector2(412, 143)
+scale = Vector2(0.305004, 0.591049)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TABLE"]
+position = Vector2(-132.27, 523)
+scale = Vector2(1.33106, 1)
+polygon = PackedVector2Array(1, 1, 1, 125, 1151, 126, 1151, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="TABLE/CollisionPolygon2D"]
+position = Vector2(578.862, 54)
+scale = Vector2(1.38603, 1.02675)
+color = Color(0.246395, 0.212115, 0.0493611, 1)
+offset = Vector2(-580.376, -50.1272)
+polygon = PackedVector2Array(165.362, -1, 165.362, 119, 991.645, 122, 991.645, 1)
+
+[node name="TABLEPART" type="StaticBody2D" parent="."]
+position = Vector2(544, 190)
+rotation = -0.524239
+scale = Vector2(0.305004, 0.591049)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TABLEPART"]
+position = Vector2(-132.27, 523)
+scale = Vector2(1.33106, 1)
+polygon = PackedVector2Array(1, 1, 1, 125, 1151, 126, 1151, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="TABLEPART/CollisionPolygon2D"]
+position = Vector2(578.862, 54)
+scale = Vector2(1.38603, 1.02675)
+color = Color(0.246395, 0.212115, 0.0493611, 1)
+offset = Vector2(-580.376, -50.1272)
+polygon = PackedVector2Array(165.362, -1, 165.362, 119, 991.645, 122, 991.645, 1)
+
+[node name="TABLEPART2" type="StaticBody2D" parent="."]
+position = Vector2(407, 29)
+rotation = 0.624507
+scale = Vector2(0.305004, 0.591049)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TABLEPART2"]
+position = Vector2(-132.27, 523)
+scale = Vector2(1.33106, 1)
+polygon = PackedVector2Array(1, 1, 1, 125, 1151, 126, 1151, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="TABLEPART2/CollisionPolygon2D"]
+position = Vector2(578.862, 54)
+scale = Vector2(1.38603, 1.02675)
+color = Color(0.246395, 0.212115, 0.0493611, 1)
+offset = Vector2(-580.376, -50.1272)
+polygon = PackedVector2Array(165.362, -1, 165.362, 119, 991.645, 122, 991.645, 1)
+
+[node name="BaseStackableObject" parent="." instance=ExtResource("2_srb24")]
+position = Vector2(405, 146)
+
+[node name="StackableObjectSpawner" type="Node2D" parent="."]
+script = ExtResource("3_gklty")
+
+[connection signal="body_entered" from="FLOOR" to="FLOOR" method="_on_body_entered"]

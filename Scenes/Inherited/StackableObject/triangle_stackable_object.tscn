@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgou0t5ipd28r"]
+
+[ext_resource type="PackedScene" uid="uid://dbo7mjohyjxd7" path="res://Scenes/Inherited/StackableObject/Base/base_stackable_object.tscn" id="1_nyalq"]
+
+[node name="TriangleStackableObject" instance=ExtResource("1_nyalq")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
+position = Vector2(7, -1)
+polygon = PackedVector2Array(-7, -16, -20, 17, 7, 17)
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = false
+disabled = true

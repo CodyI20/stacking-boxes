@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbo7mjohyjxd7"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://cmt6cvr6etpd0" path="res://Resources/bouncy_material.tres" id="1_03fib"]
+[ext_resource type="Texture2D" uid="uid://d3qpf0cd85116" path="res://Art/icon.svg" id="2_op177"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rucqf"]
+radius = 25.0
+
+[node name="BaseStackableObject" type="RigidBody2D"]
+collision_layer = 2
+physics_material_override = ExtResource("1_03fib")
+freeze_mode = 1
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.28125, 0.28125)
+texture = ExtResource("2_op177")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rucqf")
