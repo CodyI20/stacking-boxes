@@ -78,6 +78,9 @@ polygon = PackedVector2Array(165.362, -1, 165.362, 119, 991.645, 122, 991.645, 1
 position = Vector2(405, 146)
 
 [node name="StackableObjectSpawner" type="Node2D" parent="."]
+position = Vector2(567, 215)
 script = ExtResource("3_gklty")
+
+[node name="DroppedObjectsContainer" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="FLOOR" to="FLOOR" method="_on_body_entered"]

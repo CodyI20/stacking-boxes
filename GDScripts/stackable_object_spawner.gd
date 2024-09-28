@@ -11,8 +11,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Space"):
+	# Check if the spawner has objects inside of it to be able to spawn new ones
+	if get_child_count() == 0:
 		spawn_object()
+	queue_redraw()
 
 # This function gets a random number, then gets a random scene from the array and instantiates it
 func spawn_object() -> void:
@@ -22,8 +24,11 @@ func spawn_object() -> void:
 	# Save the instance of the scene in a variable so we can modify certain properties, such as the position in this case
 	var scene_instance = stackableObjectsScenes[random_object_number].instantiate()
 	
-	# Modify the position of the scene (it will be set to the mouse position for now)
-	scene_instance.global_position = get_global_mouse_position()
+	# Set the position of the scene instance to the parameter
+	scene_instance.global_position = to_local(global_position)
 	
 	# Add it as child to the Node this script is attached to
 	add_child(scene_instance)
+
+func _draw() -> void:
+	draw_circle(to_local(global_position), 2.0, Color.RED)
