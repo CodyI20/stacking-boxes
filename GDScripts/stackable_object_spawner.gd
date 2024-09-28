@@ -4,20 +4,25 @@ var stackableObjectsScenes := [preload("res://Scenes/Inherited/StackableObject/B
 , preload("res://Scenes/Inherited/StackableObject/triangle_stackable_object.tscn")]
 var rng = RandomNumberGenerator.new()
 
+var can_spawn := true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	Events.object_released.connect(on_object_released)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Check if the spawner has objects inside of it to be able to spawn new ones
-	if get_child_count() == 0:
+	if can_spawn == true:
 		spawn_object()
 	queue_redraw()
 
 # This function gets a random number, then gets a random scene from the array and instantiates it
 func spawn_object() -> void:
+	# Toggle the spawning off
+	can_spawn = false
+	
 	# Get the random number
 	var random_object_number := rng.randf_range(0, stackableObjectsScenes.size())
 	
@@ -30,5 +35,10 @@ func spawn_object() -> void:
 	# Add it as child to the Node this script is attached to
 	add_child(scene_instance)
 
+func on_object_released() -> void:
+	# Allow spawn
+	can_spawn = true
+
 func _draw() -> void:
+	# Debug to see where the spawn point of the object scenes will be
 	draw_circle(to_local(global_position), 2.0, Color.RED)

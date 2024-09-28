@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1ghchp5wgott"]
+[gd_scene load_steps=4 format=3 uid="uid://c1ghchp5wgott"]
 
 [ext_resource type="Script" path="res://GDScripts/floor.gd" id="1_lypt3"]
-[ext_resource type="PackedScene" uid="uid://dbo7mjohyjxd7" path="res://Scenes/Inherited/StackableObject/Base/base_stackable_object.tscn" id="2_srb24"]
 [ext_resource type="Script" path="res://GDScripts/stackable_object_spawner.gd" id="3_gklty"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cay3g"]
@@ -74,13 +73,8 @@ color = Color(0.246395, 0.212115, 0.0493611, 1)
 offset = Vector2(-580.376, -50.1272)
 polygon = PackedVector2Array(165.362, -1, 165.362, 119, 991.645, 122, 991.645, 1)
 
-[node name="BaseStackableObject" parent="." instance=ExtResource("2_srb24")]
-position = Vector2(405, 146)
-
 [node name="StackableObjectSpawner" type="Node2D" parent="."]
 position = Vector2(567, 215)
 script = ExtResource("3_gklty")
-
-[node name="DroppedObjectsContainer" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="FLOOR" to="FLOOR" method="_on_body_entered"]

@@ -4,6 +4,9 @@
 
 [node name="TriangleStackableObject" instance=ExtResource("1_nyalq")]
 
+[node name="Icon" parent="." index="0"]
+modulate = Color(1, 0.0984113, 0.117599, 1)
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
 position = Vector2(7, -1)
 polygon = PackedVector2Array(-7, -16, -20, 17, 7, 17)
