@@ -18,6 +18,9 @@ func try_release_process() -> void:
 	if Input.is_action_just_pressed("Space"):
 		Events.object_released.emit()
 		freeze = false
+		
+		# Reset the velocity to make sure the object doesn't fly off due to any previous movement while frozen
+		linear_velocity = Vector2.ZERO
 	
 func _process(delta: float) -> void:
 	try_release_process()
