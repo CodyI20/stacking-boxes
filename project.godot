@@ -17,6 +17,7 @@ config/icon="res://Art/icon.svg"
 [autoload]
 
 Events="*res://GDScripts/Global/Events.gd"
+MatchData="*res://GDScripts/Global/MatchData.gd"
 
 [dotnet]
 
