@@ -4,6 +4,7 @@ extends RigidBody2D
 
 func _ready() -> void:
 	freeze = true
+	Events.object_hit_safe_ground.connect(object_hit_safe_ground)
 	
 func pre_release_process() -> void:
 	if freeze == false:
@@ -21,7 +22,10 @@ func try_release_process() -> void:
 		
 		# Reset the velocity to make sure the object doesn't fly off due to any previous movement while frozen
 		linear_velocity = Vector2.ZERO
-	
+
+func object_hit_safe_ground() -> void:
+		print_debug("HIT SAFE GROUND AND VELOCITY IS VERY LITTLE ... FREEZING")
+
 func _process(delta: float) -> void:
 	try_release_process()
 
