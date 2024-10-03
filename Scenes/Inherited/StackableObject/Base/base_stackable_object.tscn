@@ -2,21 +2,20 @@
 
 [ext_resource type="PhysicsMaterial" uid="uid://cmt6cvr6etpd0" path="res://Resources/PhysicsMaterials/bouncy_material.tres" id="1_03fib"]
 [ext_resource type="Script" path="res://GDScripts/base_stackable_object.gd" id="2_4ujyi"]
-[ext_resource type="Texture2D" uid="uid://d3qpf0cd85116" path="res://Art/icon.svg" id="2_op177"]
+[ext_resource type="Texture2D" uid="uid://c5v6gd5t6byys" path="res://Art/Red_Circle(small).svg.png" id="3_r8tn4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rucqf"]
-radius = 25.0
+radius = 22.0
 
 [node name="BaseStackableObject" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 3
 physics_material_override = ExtResource("1_03fib")
-freeze_mode = 1
 script = ExtResource("2_4ujyi")
 
 [node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.28125, 0.28125)
-texture = ExtResource("2_op177")
+scale = Vector2(0.043457, 0.043457)
+texture = ExtResource("3_r8tn4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rucqf")

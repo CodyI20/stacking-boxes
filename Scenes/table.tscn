@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2u382a5oyxvh"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://cmt6cvr6etpd0" path="res://Resources/PhysicsMaterials/bouncy_material.tres" id="1_q5g0a"]
+[ext_resource type="Script" path="res://GDScripts/table.gd" id="2_mbjby"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7myd1"]
+size = Vector2(1547.52, 140.428)
+
+[node name="TABLE" type="StaticBody2D"]
+scale = Vector2(0.305004, 0.591049)
+physics_material_override = ExtResource("1_q5g0a")
+script = ExtResource("2_mbjby")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-132.27, 523)
+scale = Vector2(1.33106, 1)
+polygon = PackedVector2Array(1, 1, 1, 125, 1151, 126, 1151, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="CollisionPolygon2D"]
+position = Vector2(578.862, 54)
+scale = Vector2(1.38603, 1.02675)
+color = Color(0.246395, 0.212115, 0.0493611, 1)
+offset = Vector2(-580.376, -50.1272)
+polygon = PackedVector2Array(165.362, -1, 165.362, 119, 991.645, 122, 991.645, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(626.221, 588.784)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -5.92181)
+shape = SubResource("RectangleShape2D_7myd1")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

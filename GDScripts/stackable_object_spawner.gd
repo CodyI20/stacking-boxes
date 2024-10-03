@@ -35,7 +35,7 @@ func spawn_object() -> void:
 	# Add it as child to the Node this script is attached to
 	add_child(scene_instance)
 
-func on_object_released() -> void:
+func on_object_released(object: Node2D) -> void:
 	# Allow spawn
 	can_spawn = true
 

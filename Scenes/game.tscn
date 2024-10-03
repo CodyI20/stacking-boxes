@@ -1,14 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1ghchp5wgott"]
+[gd_scene load_steps=5 format=3 uid="uid://c1ghchp5wgott"]
 
 [ext_resource type="Script" path="res://GDScripts/floor.gd" id="1_lypt3"]
-[ext_resource type="Script" path="res://GDScripts/table.gd" id="2_vv4kw"]
+[ext_resource type="PackedScene" uid="uid://b2u382a5oyxvh" path="res://Scenes/table.tscn" id="2_rpkw3"]
 [ext_resource type="Script" path="res://GDScripts/stackable_object_spawner.gd" id="3_gklty"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cay3g"]
 size = Vector2(1611, 138)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7myd1"]
-size = Vector2(1547.52, 140.428)
 
 [node name="Game" type="Node2D"]
 
@@ -27,68 +24,19 @@ polygon = PackedVector2Array(165.362, -1, 165.362, 119, 991.645, 122, 991.645, 1
 position = Vector2(-3, 7)
 shape = SubResource("RectangleShape2D_cay3g")
 
-[node name="TABLE" type="StaticBody2D" parent="."]
-position = Vector2(412, 143)
-scale = Vector2(0.305004, 0.591049)
-script = ExtResource("2_vv4kw")
+[node name="TABLE" parent="." instance=ExtResource("2_rpkw3")]
+position = Vector2(420, 161)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TABLE"]
-position = Vector2(-132.27, 523)
-scale = Vector2(1.33106, 1)
-polygon = PackedVector2Array(1, 1, 1, 125, 1151, 126, 1151, 1)
+[node name="TABLE2" parent="." instance=ExtResource("2_rpkw3")]
+position = Vector2(352, 27)
+rotation = 0.677606
 
-[node name="Polygon2D" type="Polygon2D" parent="TABLE/CollisionPolygon2D"]
-position = Vector2(578.862, 54)
-scale = Vector2(1.38603, 1.02675)
-color = Color(0.246395, 0.212115, 0.0493611, 1)
-offset = Vector2(-580.376, -50.1272)
-polygon = PackedVector2Array(165.362, -1, 165.362, 119, 991.645, 122, 991.645, 1)
-
-[node name="Area2D" type="Area2D" parent="TABLE"]
-position = Vector2(626.221, 588.784)
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TABLE/Area2D"]
-position = Vector2(0, -5.92181)
-shape = SubResource("RectangleShape2D_7myd1")
-
-[node name="TABLEPART" type="StaticBody2D" parent="."]
-position = Vector2(544, 190)
-rotation = -0.524239
-scale = Vector2(0.305004, 0.591049)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TABLEPART"]
-position = Vector2(-132.27, 523)
-scale = Vector2(1.33106, 1)
-polygon = PackedVector2Array(1, 1, 1, 125, 1151, 126, 1151, 1)
-
-[node name="Polygon2D" type="Polygon2D" parent="TABLEPART/CollisionPolygon2D"]
-position = Vector2(578.862, 54)
-scale = Vector2(1.38603, 1.02675)
-color = Color(0.246395, 0.212115, 0.0493611, 1)
-offset = Vector2(-580.376, -50.1272)
-polygon = PackedVector2Array(165.362, -1, 165.362, 119, 991.645, 122, 991.645, 1)
-
-[node name="TABLEPART2" type="StaticBody2D" parent="."]
-position = Vector2(407, 29)
-rotation = 0.624507
-scale = Vector2(0.305004, 0.591049)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TABLEPART2"]
-position = Vector2(-132.27, 523)
-scale = Vector2(1.33106, 1)
-polygon = PackedVector2Array(1, 1, 1, 125, 1151, 126, 1151, 1)
-
-[node name="Polygon2D" type="Polygon2D" parent="TABLEPART2/CollisionPolygon2D"]
-position = Vector2(578.862, 54)
-scale = Vector2(1.38603, 1.02675)
-color = Color(0.246395, 0.212115, 0.0493611, 1)
-offset = Vector2(-580.376, -50.1272)
-polygon = PackedVector2Array(165.362, -1, 165.362, 119, 991.645, 122, 991.645, 1)
+[node name="TABLE3" parent="." instance=ExtResource("2_rpkw3")]
+position = Vector2(632, 197)
+rotation = -0.48015
 
 [node name="StackableObjectSpawner" type="Node2D" parent="."]
 position = Vector2(567, 215)
 script = ExtResource("3_gklty")
 
 [connection signal="body_entered" from="FLOOR" to="FLOOR" method="_on_body_entered"]
-[connection signal="body_entered" from="TABLE/Area2D" to="TABLE" method="_on_area_2d_body_entered"]
