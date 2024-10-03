@@ -25,6 +25,8 @@ func pre_release_process() -> void:
 	global_position.x = clamp(global_position.x, 0, get_viewport_rect().size.x)
 	
 func try_release_process() -> void:
+	if object_released == true:
+		return
 	if Input.is_action_just_pressed("Space"):
 		Events.object_released.emit(self)
 		freeze = false
@@ -45,6 +47,7 @@ func object_hit_safe_ground(object: Node2D) -> void:
 	if object != self:
 		return
 	object_entered_safe_area = true
+	#print_debug("ENTERED SAFE AREA")
 
 func on_object_left_safe_ground(object: Node2D) -> void:
 	if object != self:
@@ -54,14 +57,23 @@ func on_object_left_safe_ground(object: Node2D) -> void:
 #region TURN STATIC LOGIC
 func make_static() -> void:
 	freeze = true
+	sleeping = true
+	lock_rotation = true
+	set_process(false)
+	#print_debug("KILLING PROCESS...")
 
 func freeze_object_process(delta: float) -> void:
 	if object_entered_safe_area == true:
-		timer += delta
+		#print_debug("SAFE AREA TRUE ... PROCEED TO FREEZING LOGIC")
+		if linear_velocity <= Vector2(0.001, 0.001) and angular_velocity <= 0.001:
+			#print_debug("SPEED IS LOW, FREEZING...")
+			timer += delta
+			if timer >= static_turn_time:
+				make_static()
+		else:
+			timer -= delta
 	else:
 		timer = 0.0
-	if timer >= static_turn_time and linear_velocity < Vector2(0.001, 0.001) and angular_velocity < 0.001:
-		make_static()
 #endregion
 	
 func _process(delta: float) -> void:

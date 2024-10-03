@@ -26,14 +26,16 @@ shape = SubResource("RectangleShape2D_cay3g")
 
 [node name="TABLE" parent="." instance=ExtResource("2_rpkw3")]
 position = Vector2(420, 161)
+collision_mask = 2
 
 [node name="TABLE2" parent="." instance=ExtResource("2_rpkw3")]
 position = Vector2(352, 27)
 rotation = 0.677606
+collision_mask = 2
 
 [node name="TABLE3" parent="." instance=ExtResource("2_rpkw3")]
-position = Vector2(632, 197)
-rotation = -0.48015
+position = Vector2(619, 230)
+rotation = -0.556592
 
 [node name="StackableObjectSpawner" type="Node2D" parent="."]
 position = Vector2(567, 215)
