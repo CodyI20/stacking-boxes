@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgou0t5ipd28r"]
+[gd_scene load_steps=4 format=3 uid="uid://cgou0t5ipd28r"]
 
 [ext_resource type="PackedScene" uid="uid://dbo7mjohyjxd7" path="res://Scenes/Inherited/StackableObject/Base/base_stackable_object.tscn" id="1_nyalq"]
 [ext_resource type="Texture2D" uid="uid://bdaj8vaaw2ynf" path="res://Art/Basic_triangle.svg.png" id="2_r6f38"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k4q73"]
+radius = 17.1172
 
 [node name="TriangleStackableObject" instance=ExtResource("1_nyalq")]
 
@@ -17,3 +20,7 @@ polygon = PackedVector2Array(-7, -12, -21, 14, 6, 14)
 [node name="CollisionShape2D" parent="." index="2"]
 visible = false
 disabled = true
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_k4q73")

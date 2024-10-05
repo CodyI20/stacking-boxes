@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 @export var move_speed := 10.0
+@onready var area_2d: Area2D = $Area2D
 
 var object_released := false
 var object_entered_safe_area := false
@@ -56,6 +57,7 @@ func on_object_left_safe_ground(object: Node2D) -> void:
 #endregion
 #region TURN STATIC LOGIC
 func make_static() -> void:
+	Events.object_frozen.emit(self)
 	freeze = true
 	sleeping = true
 	lock_rotation = true
@@ -65,7 +67,7 @@ func make_static() -> void:
 func freeze_object_process(delta: float) -> void:
 	if object_entered_safe_area == true:
 		#print_debug("SAFE AREA TRUE ... PROCEED TO FREEZING LOGIC")
-		if linear_velocity <= Vector2(0.001, 0.001) and angular_velocity <= 0.001:
+		if linear_velocity.length() <= 0.001 and angular_velocity <= 0.001:
 			#print_debug("SPEED IS LOW, FREEZING...")
 			timer += delta
 			if timer >= static_turn_time:
@@ -75,6 +77,18 @@ func freeze_object_process(delta: float) -> void:
 	else:
 		timer = 0.0
 #endregion
+
+# Won't check for the layer the body is in since the Area2D has a mask for that layer only already
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body == self:
+		return
+	Events.object_hit_safe_ground.emit(body)
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body == self:
+		return
+	Events.object_left_safe_ground_early.emit(body)
 	
 func _process(delta: float) -> void:
 	try_release_process()
