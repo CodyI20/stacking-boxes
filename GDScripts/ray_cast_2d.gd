@@ -6,24 +6,21 @@ func _ready() -> void:
 	Events.object_frozen.connect(update_position)
 	
 func update_position(object: Node2D) -> void:
-	if is_colliding():
-		var collider = get_collider()
-		if collider != object:
-			return
-		var highest_point = highest_sprite_point(collider)
-		
-		global_position.y = highest_point - 1
+	var highest_point = highest_sprite_point(object)
+	
+	if global_position.y > highest_point:
+		global_position.y = highest_point
 		
 			
-func highest_sprite_point(collider: Object) -> float:
+func highest_sprite_point(object: Object) -> float:
 	var sprite : Sprite2D
-	if collider.has_node("Icon"):
-			sprite = collider.get_node("Icon")
+	if object.has_node("Icon"):
+			sprite = object.get_node("Icon")
 	else:
 		print_debug("There is no node named <<ICON>> in this object. Make sure to add one!")
 		return 0
 	var half_extents = sprite.texture.get_size() * sprite.scale/2
-	var rotation = collider.rotation
+	var rotation = object.rotation
 	
 	var local_corners = [
 		Vector2(-half_extents.x, -half_extents.y),
@@ -36,7 +33,7 @@ func highest_sprite_point(collider: Object) -> float:
 	var highest_corner_y = INF
 	for corner in local_corners:
 		var rotated_corner = corner.rotated(rotation)
-		var world_corner = collider.global_position + rotated_corner
+		var world_corner = object.global_position + rotated_corner
 		if world_corner.y < highest_corner_y:
 			highest_corner_y = world_corner.y
 	

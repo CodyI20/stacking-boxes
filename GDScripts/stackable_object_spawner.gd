@@ -8,7 +8,7 @@ var can_spawn := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Events.object_released.connect(on_object_released)
+	Events.object_frozen.connect(on_object_released)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,7 +27,7 @@ func spawn_object() -> void:
 	var random_object_number := rng.randf_range(0, stackableObjectsScenes.size())
 	
 	# Save the instance of the scene in a variable so we can modify certain properties, such as the position in this case
-	var scene_instance = stackableObjectsScenes[1].instantiate()
+	var scene_instance = stackableObjectsScenes[random_object_number].instantiate()
 	
 	# Set the position of the scene instance to the parameter
 	scene_instance.global_position = to_local(global_position)
