@@ -33,6 +33,7 @@ func try_release_process() -> void:
 		
 		# Reset the velocity to make sure the object doesn't fly off due to any previous movement while frozen
 		linear_velocity = Vector2.ZERO
+		angular_velocity = 0.0
 
 func on_object_released(object: Node2D) -> void:
 	if object != self:
@@ -47,7 +48,7 @@ func object_hit_safe_ground(object: Node2D) -> void:
 	if object != self:
 		return
 	object_entered_safe_area = true
-	print_debug("ENTERED SAFE AREA")
+	#print_debug("ENTERED SAFE AREA")
 
 #endregion
 #region TURN STATIC LOGIC
@@ -61,9 +62,11 @@ func make_static() -> void:
 
 func freeze_object_process(delta: float) -> void:
 	if object_entered_safe_area == true:
+		linear_damp += 0.005
+		if linear_velocity.length() <= 2.0 and abs(angular_velocity) <= 1.0:
+			timer += delta
 		#print_debug("SAFE AREA TRUE ... PROCEED TO FREEZING LOGIC")
-		if linear_velocity.length() <= 0.001 and angular_velocity <= 0.001:
-			#print_debug("SPEED VERY LOW: ", linear_velocity.length(), "; ", angular_velocity, " ! FREEZING...")
+		if linear_velocity.length() <= 0.01 and abs(angular_velocity) <= 0.01 or timer >= static_turn_time:
 			make_static()
 #endregion
 
