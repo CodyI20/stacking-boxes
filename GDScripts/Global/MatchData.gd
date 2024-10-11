@@ -6,8 +6,8 @@ func _ready() -> void:
 	Events.raycast_position_update.connect(increment_current_score)
 	Events.scene_reset.connect(reset_score)
 
-func increment_current_score() -> void:
-	current_score += 1
+func increment_current_score(score: int) -> void:
+	current_score += score
 	print_debug("The new score is: ", current_score)
 
 func reset_score() -> void:

@@ -12,7 +12,7 @@ func update_position(object: Node2D) -> void:
 	var highest_point = highest_sprite_point(object)
 	
 	if global_position.y > highest_point:
-		Events.raycast_position_update.emit()
+		Events.raycast_position_update.emit(global_position.y-highest_point)
 		global_position.y = highest_point
 		
 			

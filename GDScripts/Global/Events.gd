@@ -7,7 +7,7 @@ signal object_left_safe_ground_early(object: Node2D)
 signal object_frozen(object: Node2D)
 
 # RAYCAST
-signal raycast_position_update
+signal raycast_position_update(score_increment: int) # Gets called from ray_cast_2d.gd
 
 # SCENE
 signal scene_reset
