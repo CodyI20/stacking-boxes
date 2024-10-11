@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var spawned_objects_container: Node2D = $"../../SpawnedObjectsContainer"
 var stackableObjectsScenes := [preload("res://Scenes/Inherited/StackableObject/Base/base_stackable_object.tscn"), preload("res://Scenes/Inherited/StackableObject/square_stackable_object.tscn")
 , preload("res://Scenes/Inherited/StackableObject/triangle_stackable_object.tscn")]
 var rng = RandomNumberGenerator.new()
@@ -8,7 +9,7 @@ var can_spawn := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Events.object_frozen.connect(on_object_released)
+	Events.object_frozen.connect(on_object_frozen)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,12 +31,12 @@ func spawn_object() -> void:
 	var scene_instance = stackableObjectsScenes[random_object_number].instantiate()
 	
 	# Set the position of the scene instance to the parameter
-	scene_instance.global_position = to_local(global_position)
+	scene_instance.global_position = global_position
 	
 	# Add it as child to the Node this script is attached to
-	add_child(scene_instance)
+	spawned_objects_container.add_child(scene_instance)
 
-func on_object_released(object: Node2D) -> void:
+func on_object_frozen(object: Node2D) -> void:
 	# Allow spawn
 	can_spawn = true
 

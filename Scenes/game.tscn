@@ -38,14 +38,19 @@ collision_mask = 2
 position = Vector2(782, 454)
 rotation = -0.556592
 
-[node name="StackableObjectSpawner" type="Node2D" parent="."]
-position = Vector2(567, 215)
-script = ExtResource("3_gklty")
-
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(1419, 437)
 target_position = Vector2(-2000, 0)
 collision_mask = 2
 script = ExtResource("4_mw6q6")
+
+[node name="Camera2D" type="Camera2D" parent="RayCast2D"]
+position = Vector2(-844, -114)
+
+[node name="StackableObjectSpawner" type="Node2D" parent="RayCast2D"]
+position = Vector2(-852, -222)
+script = ExtResource("3_gklty")
+
+[node name="SpawnedObjectsContainer" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="FLOOR" to="FLOOR" method="_on_body_entered"]
