@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1ghchp5wgott"]
+[gd_scene load_steps=7 format=3 uid="uid://c1ghchp5wgott"]
 
 [ext_resource type="Script" path="res://GDScripts/floor.gd" id="1_lypt3"]
 [ext_resource type="PackedScene" uid="uid://b2u382a5oyxvh" path="res://Scenes/table.tscn" id="2_rpkw3"]
 [ext_resource type="Script" path="res://GDScripts/stackable_object_spawner.gd" id="3_gklty"]
 [ext_resource type="Script" path="res://GDScripts/ray_cast_2d.gd" id="4_mw6q6"]
+[ext_resource type="Script" path="res://Scenes/score_text.gd" id="5_5j15g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cay3g"]
 size = Vector2(1611, 138)
@@ -26,17 +27,18 @@ position = Vector2(-3, 7)
 shape = SubResource("RectangleShape2D_cay3g")
 
 [node name="TABLE" parent="." instance=ExtResource("2_rpkw3")]
-position = Vector2(401, 447)
+position = Vector2(380, 448)
 collision_mask = 2
 
 [node name="TABLE2" parent="." instance=ExtResource("2_rpkw3")]
-position = Vector2(152, 198)
-rotation = 0.677606
+position = Vector2(395, 337)
+rotation = 1.58504
 collision_mask = 2
 
 [node name="TABLE3" parent="." instance=ExtResource("2_rpkw3")]
-position = Vector2(782, 454)
-rotation = -0.556592
+position = Vector2(785, 348)
+rotation = -0.554126
+scale = Vector2(0.0740623, 0.218966)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(1419, 437)
@@ -50,6 +52,25 @@ position = Vector2(-844, -114)
 [node name="StackableObjectSpawner" type="Node2D" parent="RayCast2D"]
 position = Vector2(-852, -222)
 script = ExtResource("3_gklty")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="RayCast2D"]
+follow_viewport_scale = 0.001
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RayCast2D/CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.905
+anchor_top = 0.644
+anchor_right = 0.905
+anchor_bottom = 0.644
+offset_left = -102.56
+offset_top = -11.312
+offset_right = 101.44
+offset_bottom = 11.688
+grow_horizontal = 0
+grow_vertical = 0
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("5_5j15g")
 
 [node name="SpawnedObjectsContainer" type="Node2D" parent="."]
 

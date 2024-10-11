@@ -5,10 +5,14 @@ var has_collided: bool = false
 func _ready() -> void:
 	Events.object_frozen.connect(update_position)
 	
+func _process(delta: float) -> void:
+	queue_redraw()
+	
 func update_position(object: Node2D) -> void:
 	var highest_point = highest_sprite_point(object)
 	
 	if global_position.y > highest_point:
+		Events.raycast_position_update.emit()
 		global_position.y = highest_point
 		
 			
@@ -38,3 +42,6 @@ func highest_sprite_point(object: Object) -> float:
 			highest_corner_y = world_corner.y
 	
 	return highest_corner_y
+
+func _draw() -> void:
+	draw_line(Vector2(global_position.x, 0), target_position, Color.GREEN)
