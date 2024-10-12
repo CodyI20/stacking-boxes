@@ -11,6 +11,8 @@ config_version=5
 [application]
 
 config/name="StackingBoxes"
+config/version="1.0.0"
+run/main_scene="res://Scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Art/icon.svg"
 
