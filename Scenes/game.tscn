@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1ghchp5wgott"]
+[gd_scene load_steps=8 format=3 uid="uid://c1ghchp5wgott"]
 
 [ext_resource type="Script" path="res://GDScripts/floor.gd" id="1_lypt3"]
 [ext_resource type="PackedScene" uid="uid://b2u382a5oyxvh" path="res://Scenes/table.tscn" id="2_rpkw3"]
 [ext_resource type="Script" path="res://GDScripts/stackable_object_spawner.gd" id="3_gklty"]
 [ext_resource type="Script" path="res://GDScripts/ray_cast_2d.gd" id="4_mw6q6"]
-[ext_resource type="Script" path="res://Scenes/score_text.gd" id="5_5j15g"]
+[ext_resource type="Script" path="res://GDScripts/score_text.gd" id="5_5j15g"]
+[ext_resource type="PackedScene" uid="uid://bdf72nkoammvf" path="res://Scenes/highscore.tscn" id="6_akdk3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cay3g"]
 size = Vector2(1611, 138)
@@ -71,6 +72,8 @@ grow_vertical = 0
 bbcode_enabled = true
 fit_content = true
 script = ExtResource("5_5j15g")
+
+[node name="Highscore" parent="RayCast2D/CanvasLayer" instance=ExtResource("6_akdk3")]
 
 [node name="SpawnedObjectsContainer" type="Node2D" parent="."]
 

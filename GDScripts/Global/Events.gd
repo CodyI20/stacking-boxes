@@ -11,3 +11,6 @@ signal raycast_position_update(score_increment: int) # Gets called from ray_cast
 
 # SCENE
 signal scene_reset
+
+# DATA
+signal set_highscore(score: int)

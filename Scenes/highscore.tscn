@@ -1,0 +1,73 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdf72nkoammvf"]
+
+[ext_resource type="Script" path="res://GDScripts/highscore_container.gd" id="1_4qokc"]
+
+[node name="Highscore" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TITLE" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.505229
+anchor_top = 0.0844444
+anchor_right = 0.505229
+anchor_bottom = 0.0844444
+offset_left = -170.024
+offset_top = -35.72
+offset_right = 170.976
+offset_bottom = 35.28
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[b][font_size=50][outline_size=3][outline_color=CYAN] [rainbow freq=0.1 sat=1 val=1] HIGHSCORE"
+fit_content = true
+
+[node name="HighscoreContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.516
+anchor_top = 0.292
+anchor_right = 0.516
+anchor_bottom = 0.292
+offset_left = -197.432
+offset_top = -71.216
+offset_right = 198.568
+offset_bottom = 71.784
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+script = ExtResource("1_4qokc")
+
+[node name="Highscore" type="RichTextLabel" parent="HighscoreContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "1."
+fit_content = true
+
+[node name="Highscore2" type="RichTextLabel" parent="HighscoreContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "1."
+fit_content = true
+
+[node name="Highscore3" type="RichTextLabel" parent="HighscoreContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "1."
+fit_content = true
+
+[node name="Highscore4" type="RichTextLabel" parent="HighscoreContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "1."
+fit_content = true
+
+[node name="Highscore5" type="RichTextLabel" parent="HighscoreContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "1."
+fit_content = true

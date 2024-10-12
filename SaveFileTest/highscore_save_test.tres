@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SaveData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://GDScripts/Data/save_data.gd" id="1_ijcwj"]
+
+[resource]
+script = ExtResource("1_ijcwj")
+high_score = 50

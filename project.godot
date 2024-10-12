@@ -31,6 +31,7 @@ folder_colors={
 "res://Art/": "red",
 "res://GDScripts/": "blue",
 "res://Resources/": "purple",
+"res://SaveFileTest/": "yellow",
 "res://Scenes/": "green"
 }
 
