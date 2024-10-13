@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="SaveData" load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://GDScripts/Data/save_data.gd" id="1_ijcwj"]
+[ext_resource type="Script" path="res://GDScripts/Data/save_data.gd" id="1_fghrk"]
 
 [resource]
-script = ExtResource("1_ijcwj")
-high_score = 50
+script = ExtResource("1_fghrk")
+high_score = 58
+high_score_2 = 35
+high_score_3 = 32
+high_score_4 = 15
+high_score_5 = 0
