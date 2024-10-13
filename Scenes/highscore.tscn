@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdf72nkoammvf"]
+[gd_scene load_steps=3 format=3 uid="uid://bdf72nkoammvf"]
 
 [ext_resource type="Script" path="res://GDScripts/highscore_container.gd" id="1_4qokc"]
+[ext_resource type="Script" path="res://Scenes/highscore.gd" id="1_14obm"]
 
 [node name="Highscore" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_14obm")
 
 [node name="TITLE" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -71,3 +73,32 @@ layout_mode = 2
 bbcode_enabled = true
 text = "1."
 fit_content = true
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.504958
+anchor_top = 0.756
+anchor_right = 0.504958
+anchor_bottom = 0.756
+offset_left = -87.712
+offset_top = -123.888
+offset_right = 88.288
+offset_bottom = 124.112
+metadata/_edit_use_anchors_ = true
+
+[node name="RetryButton" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+text = "RETRY"
+
+[node name="MenuButton" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+text = "MENU"
+
+[node name="QuitButton" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+text = "QUIT"
+
+[connection signal="pressed" from="ButtonsContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="ButtonsContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]

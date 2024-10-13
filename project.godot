@@ -20,6 +20,7 @@ config/icon="res://Art/icon.svg"
 
 Events="*res://GDScripts/Global/Events.gd"
 MatchData="*res://GDScripts/Global/MatchData.gd"
+GameManager="*res://GDScripts/Global/GameManager.gd"
 
 [dotnet]
 

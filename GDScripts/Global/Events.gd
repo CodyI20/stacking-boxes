@@ -10,7 +10,7 @@ signal object_frozen(object: Node2D)
 signal raycast_position_update(score_increment: int) # Gets called from ray_cast_2d.gd
 
 # SCENE
-signal scene_reset
+signal game_over()
 
 # DATA
 signal set_highscore(score: int)

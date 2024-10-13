@@ -9,7 +9,7 @@ func _ready() -> void:
 	high_score_save_data = SaveData.load_or_create()
 	
 	Events.raycast_position_update.connect(increment_current_score)
-	Events.scene_reset.connect(reset_score)
+	Events.game_over.connect(reset_score)
 
 func increment_current_score(score: int) -> void:
 	current_score += score
