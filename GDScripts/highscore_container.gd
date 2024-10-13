@@ -8,8 +8,8 @@ extends VBoxContainer
 
 
 func _ready() -> void:
-	highscore.text = "%s" % MatchData.high_score_save_data.high_score
-	highscore_2.text = "%s" % MatchData.high_score_save_data.high_score_2
-	highscore_3.text = "%s" % MatchData.high_score_save_data.high_score_3
-	highscore_4.text = "%s" % MatchData.high_score_save_data.high_score_4
-	highscore_5.text = "%s" % MatchData.high_score_save_data.high_score_5
+	highscore.text = "[b] 1. 			[font_size=20]%s" % MatchData.high_score_save_data.high_score
+	highscore_2.text = "[b] 2. 			[font_size=20]%s" % MatchData.high_score_save_data.high_score_2
+	highscore_3.text = "[b] 3. 			[font_size=20]%s" % MatchData.high_score_save_data.high_score_3
+	highscore_4.text = "[b] 4. 			[font_size=20]%s" % MatchData.high_score_save_data.high_score_4
+	highscore_5.text = "[b] 5. 			[font_size=20]%s" % MatchData.high_score_save_data.high_score_5
