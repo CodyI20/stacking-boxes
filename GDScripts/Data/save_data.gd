@@ -6,7 +6,7 @@ class_name SaveData
 @export var high_score_3 := 0
 @export var high_score_4 := 0
 @export var high_score_5 := 0
-const SAVE_PATH := "res://SaveFileTest/highscore_save_test.tres"
+const SAVE_PATH := "user://saves/high_score_save.tres"
 
 func save() -> void:
 	ResourceSaver.save(self, SAVE_PATH)
