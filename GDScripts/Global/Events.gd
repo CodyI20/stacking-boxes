@@ -10,6 +10,7 @@ signal object_frozen(object: Node2D)
 signal raycast_position_update(score_increment: int) # Gets called from ray_cast_2d.gd
 
 # SCENE
+signal options_menu_toggle(is_on: bool)
 signal game_over()
 
 # DATA

@@ -1,6 +1,8 @@
 extends Node
 
-
+# GAME SETTINGS
+var window_mode := DisplayServer.WINDOW_MODE_WINDOWED
+var resolution := Vector2i(1280,720)
 
 # SCENE SWAPPING LOGIC
 func go_to_main_menu() -> void:

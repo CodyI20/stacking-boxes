@@ -35,6 +35,7 @@ func _on_window_modes_item_selected(index: int) -> void:
 
 # BUTTONS
 func _on_back_button_pressed() -> void:
+	Events.options_menu_toggle.emit(false)
 	visible = false
 	set_process(false)
 
