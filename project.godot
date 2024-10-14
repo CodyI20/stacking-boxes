@@ -22,6 +22,12 @@ Events="*res://GDScripts/Global/Events.gd"
 MatchData="*res://GDScripts/Global/MatchData.gd"
 GameManager="*res://GDScripts/Global/GameManager.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/aspect="expand"
+
 [dotnet]
 
 project/assembly_name="StackingBoxes"

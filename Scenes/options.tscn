@@ -1,0 +1,104 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk1rgtf8maf0i"]
+
+[ext_resource type="Script" path="res://GDScripts/options.gd" id="1_8iwmn"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8iwmn")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.517188
+anchor_top = 0.102
+anchor_right = 0.517188
+anchor_bottom = 0.102
+offset_left = -75.8
+offset_top = -27.096
+offset_right = 75.2
+offset_bottom = 26.904
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[b][color=GREEN][wave amp = 0.01 frequency=0.2][font_size=30] OPTIONS"
+metadata/_edit_use_anchors_ = true
+
+[node name="OptionsContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.515588
+anchor_top = 0.41
+anchor_right = 0.515588
+anchor_bottom = 0.41
+offset_left = -328.952
+offset_top = -159.2
+offset_right = 328.048
+offset_bottom = 159.8
+metadata/_edit_use_anchors_ = true
+
+[node name="ResolutionText" type="RichTextLabel" parent="OptionsContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b] Resolution"
+fit_content = true
+
+[node name="Resolutions" type="OptionButton" parent="OptionsContainer"]
+layout_mode = 2
+selected = 1
+item_count = 2
+popup/item_0/text = "1920x1080"
+popup/item_1/text = "1280x720"
+popup/item_1/id = 1
+
+[node name="FullscreenText" type="RichTextLabel" parent="OptionsContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b] Window mode"
+fit_content = true
+
+[node name="WindowModes" type="OptionButton" parent="OptionsContainer"]
+layout_mode = 2
+selected = 1
+item_count = 2
+popup/item_0/text = "Fullscreen"
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
+
+[node name="FullscreenText2" type="RichTextLabel" parent="OptionsContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b] V-SYNC"
+fit_content = true
+
+[node name="CheckButton" type="CheckButton" parent="OptionsContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.515
+anchor_top = 0.744
+anchor_right = 0.515
+anchor_bottom = 0.744
+offset_left = -89.2001
+offset_top = -32.68
+offset_right = 89.7999
+offset_bottom = 33.32
+
+[node name="BackButton" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+text = "BACK"
+
+[node name="QuitButton" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+text = "QUIT"
+
+[connection signal="item_selected" from="OptionsContainer/Resolutions" to="." method="_on_resolutions_item_selected"]
+[connection signal="item_selected" from="OptionsContainer/WindowModes" to="." method="_on_window_modes_item_selected"]
+[connection signal="pressed" from="ButtonsContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]
