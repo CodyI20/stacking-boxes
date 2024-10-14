@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var spawned_objects_container: Node2D = $"../../SpawnedObjectsContainer"
 var stackableObjectsScenes := [preload("res://Scenes/Inherited/StackableObject/Base/base_stackable_object.tscn"), preload("res://Scenes/Inherited/StackableObject/square_stackable_object.tscn")
-, preload("res://Scenes/Inherited/StackableObject/triangle_stackable_object.tscn")]
+, preload("res://Scenes/Inherited/StackableObject/triangle_stackable_object.tscn"), preload("res://Scenes/Inherited/StackableObject/pentagon_stackable_object.tscn")]
 var rng = RandomNumberGenerator.new()
 
 var can_spawn := true

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsuc40i5cpn76"]
+
+[ext_resource type="PackedScene" uid="uid://dbo7mjohyjxd7" path="res://Scenes/Inherited/StackableObject/Base/base_stackable_object.tscn" id="1_guiqq"]
+[ext_resource type="Texture2D" uid="uid://np7rupqtw2b5" path="res://Art/Pentagon.png" id="2_sm21w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rg7wq"]
+radius = 22.0
+
+[node name="PentagonStackableObject" instance=ExtResource("1_guiqq")]
+
+[node name="Icon" parent="." index="0"]
+scale = Vector2(0.166543, 0.166543)
+texture = ExtResource("2_sm21w")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
+scale = Vector2(1.4375, 1.4375)
+polygon = PackedVector2Array(-15.539, -5.035, -9.73913, 13.2174, 9.519, 13.252, 15.429, -5.01, 0, -16.341)
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_rg7wq")
+disabled = true

@@ -33,7 +33,6 @@ func highest_sprite_point(object: Object) -> float:
 		Vector2(-half_extents.x, half_extents.y)
 	]
 	
-	var world_corners = []
 	var highest_corner_y = INF
 	for corner in local_corners:
 		var rotated_corner = corner.rotated(rotation)
