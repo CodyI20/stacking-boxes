@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://nrw0tdwp0uxh"]
+[gd_scene load_steps=4 format=3 uid="uid://nrw0tdwp0uxh"]
 
 [ext_resource type="Script" path="res://GDScripts/main_menu.gd" id="1_j1g27"]
+[ext_resource type="PackedScene" uid="uid://dk1rgtf8maf0i" path="res://Scenes/options.tscn" id="2_1p7u7"]
+[ext_resource type="Script" path="res://GDScripts/main_menu_content.gd" id="2_rhhra"]
 
 [node name="MainMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +14,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j1g27")
 
-[node name="TITLE" type="RichTextLabel" parent="."]
+[node name="MainMenuContent" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_rhhra")
+
+[node name="TITLE" type="RichTextLabel" parent="MainMenuContent"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -27,7 +39,7 @@ bbcode_enabled = true
 text = "[b][color=ORANGE][pulse freq=0.86 color=#ffffff40 ease=-1.0][font_size=35] STACKING BOXES"
 metadata/_edit_use_anchors_ = true
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+[node name="ButtonsContainer" type="VBoxContainer" parent="MainMenuContent"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.505
@@ -40,18 +52,21 @@ offset_right = 88.2396
 offset_bottom = 50.336
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayButton" type="Button" parent="ButtonsContainer"]
+[node name="PlayButton" type="Button" parent="MainMenuContent/ButtonsContainer"]
 layout_mode = 2
 text = "PLAY"
 
-[node name="OptionsButton" type="Button" parent="ButtonsContainer"]
+[node name="OptionsButton" type="Button" parent="MainMenuContent/ButtonsContainer"]
 layout_mode = 2
 text = "OPTIONS"
 
-[node name="QuitButton" type="Button" parent="ButtonsContainer"]
+[node name="QuitButton" type="Button" parent="MainMenuContent/ButtonsContainer"]
 layout_mode = 2
 text = "QUIT"
 
-[connection signal="pressed" from="ButtonsContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="ButtonsContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="Options" parent="." instance=ExtResource("2_1p7u7")]
+layout_mode = 1
+
+[connection signal="pressed" from="MainMenuContent/ButtonsContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenuContent/ButtonsContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainMenuContent/ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]

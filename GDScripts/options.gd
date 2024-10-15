@@ -3,7 +3,8 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	Events.options_menu_toggle.connect(toggle_menu)
+	toggle_menu(false)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,12 +33,13 @@ func _on_window_modes_item_selected(index: int) -> void:
 	
 	DisplayServer.window_set_mode(window_mode)
 
+func toggle_menu(enabled: bool) -> void:
+	visible = enabled
+	set_process(enabled)
 
 # BUTTONS
 func _on_back_button_pressed() -> void:
 	Events.options_menu_toggle.emit(false)
-	visible = false
-	set_process(false)
 
 
 func _on_quit_button_pressed() -> void:
