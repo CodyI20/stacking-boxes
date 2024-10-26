@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dksuxerf2dxlo"]
 
 [ext_resource type="PackedScene" uid="uid://dbo7mjohyjxd7" path="res://Scenes/Inherited/StackableObject/Base/base_stackable_object.tscn" id="1_m84s1"]
-[ext_resource type="Texture2D" uid="uid://d3qpf0cd85116" path="res://Art/icon.svg" id="2_nxcaf"]
+[ext_resource type="Texture2D" uid="uid://d3qpf0cd85116" path="res://Art/2D/icon.svg" id="2_nxcaf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7m2b"]
 size = Vector2(36, 36)
