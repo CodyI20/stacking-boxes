@@ -1,6 +1,7 @@
 extends Node
 
 # Sound volume control variables
+# DO NOT USE THESE VARIABLES TO SET THE VOLUME IN CODE; INSTEAD USE THE FUNCTIONS FOR SETTING THE VOLUME
 @export var master_volume: float = 1.0
 @export var sfx_volume: float = 1.0
 @export var music_volume: float = 1.0
@@ -8,18 +9,24 @@ extends Node
 var saved_master_volume_before_muting: float = 1.0
 
 @export var current_music: AudioStreamPlayer = null
+@export var current_SFX: AudioStreamPlayer = null
 var sfx_players: Array = []
 
-# Path to music and SFX variable
+# Background music
 @export var default_music: AudioStream = null
 
+
+# SPECIFIC VARIABLES
+const OBJECT_DROPPED_SOUND = preload("res://Art/SFX/Object dropped sound.wav")
+const BACKGROUND_MUSIC = preload("res://Art/SFX/Background_music.mp3")
+
 func _ready() -> void:
+	event_subscription()
 	if default_music:
-		play_music(default_music)
+		play_music(BACKGROUND_MUSIC)
 		
 func event_subscription() -> void:
-	Events.object_released.connect(play_sfx)
-	pass
+	Events.object_released.connect(play_object_released_sound)
 
 func play_music(music: AudioStream, loop: bool=true, crossfade_time: float = 0.0):
 	if current_music:
@@ -32,7 +39,6 @@ func play_music(music: AudioStream, loop: bool=true, crossfade_time: float = 0.0
 	current_music = AudioStreamPlayer.new()
 	current_music.stream = music
 	current_music.volume_db = linear2db(music_volume * master_volume)
-	current_music.loop = loop
 	add_child(current_music)
 	current_music.play()
 	
@@ -50,7 +56,7 @@ func play_sfx(sfx: AudioStream) -> void:
 	sfx_player.play()
 	
 	# Remove SFX player when done playing
-	sfx_player.connect("finished", queue_free)
+	sfx_player.connect("finished", sfx_player.queue_free)
 	sfx_players.append(sfx_player)
 	
 func set_master_volume(volume: float) -> void:
@@ -80,3 +86,9 @@ func mute() -> void:
 
 func unmute() -> void:
 	set_master_volume(saved_master_volume_before_muting)
+
+
+# SPECIFIC FUNCTIONS
+
+func play_object_released_sound(object: Node2D) -> void:
+	play_sfx(OBJECT_DROPPED_SOUND)

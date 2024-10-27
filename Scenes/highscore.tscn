@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdf72nkoammvf"]
+[gd_scene load_steps=4 format=3 uid="uid://bdf72nkoammvf"]
 
 [ext_resource type="Script" path="res://GDScripts/highscore_container.gd" id="1_4qokc"]
 [ext_resource type="Script" path="res://GDScripts/highscore.gd" id="1_14obm"]
+[ext_resource type="PackedScene" uid="uid://e0x1je4ejc0v" path="res://Scenes/audio_manager.tscn" id="3_dog6l"]
 
 [node name="Highscore" type="Control"]
 layout_mode = 3
@@ -98,6 +99,8 @@ text = "MENU"
 [node name="QuitButton" type="Button" parent="ButtonsContainer"]
 layout_mode = 2
 text = "QUIT"
+
+[node name="AudioManager" parent="." instance=ExtResource("3_dog6l")]
 
 [connection signal="pressed" from="ButtonsContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="ButtonsContainer/MenuButton" to="." method="_on_menu_button_pressed"]

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://e0x1je4ejc0v"]
+[gd_scene load_steps=3 format=3 uid="uid://e0x1je4ejc0v"]
 
 [ext_resource type="Script" path="res://GDScripts/Global/AudioManager.gd" id="1_duspo"]
+[ext_resource type="AudioStream" uid="uid://nhdrnkle26xm" path="res://Art/SFX/Background_music.mp3" id="2_gfkje"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_duspo")
+default_music = ExtResource("2_gfkje")
