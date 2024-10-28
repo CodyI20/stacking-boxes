@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://nrw0tdwp0uxh"]
+[gd_scene load_steps=4 format=3 uid="uid://nrw0tdwp0uxh"]
 
 [ext_resource type="Script" path="res://GDScripts/main_menu.gd" id="1_j1g27"]
 [ext_resource type="PackedScene" uid="uid://dk1rgtf8maf0i" path="res://Scenes/options.tscn" id="2_1p7u7"]
 [ext_resource type="Script" path="res://GDScripts/main_menu_content.gd" id="2_rhhra"]
-[ext_resource type="PackedScene" uid="uid://e0x1je4ejc0v" path="res://Scenes/audio_manager.tscn" id="4_eh6yj"]
 
 [node name="MainMenu" type="Control"]
 process_mode = 3
@@ -67,8 +66,6 @@ text = "QUIT"
 
 [node name="Options" parent="." instance=ExtResource("2_1p7u7")]
 layout_mode = 1
-
-[node name="AudioManager" parent="." instance=ExtResource("4_eh6yj")]
 
 [connection signal="pressed" from="MainMenuContent/ButtonsContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MainMenuContent/ButtonsContainer/OptionsButton" to="." method="_on_options_button_pressed"]

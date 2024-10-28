@@ -35,19 +35,6 @@ func _on_window_modes_item_selected(index: int) -> void:
 
 # SOUND SETTINGS
 
-func _on_master_slider_value_changed(value: float) -> void:
-	AudioManager.set_master_volume(value)
-
-
-func _on_sfx_slider_value_changed(value: float) -> void:
-	AudioManager.set_sfx_volume(value)
-
-
-func _on_music_slider_value_changed(value: float) -> void:
-	AudioManager.set_music_volume(value)
-
-
-
 func toggle_menu(enabled: bool) -> void:
 	visible = enabled
 	set_process(enabled)

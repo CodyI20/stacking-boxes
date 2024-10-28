@@ -21,7 +21,6 @@ config/icon="res://Art/2D/icon.svg"
 Events="*res://GDScripts/Global/Events.gd"
 MatchData="*res://GDScripts/Global/MatchData.gd"
 GameManager="*res://GDScripts/Global/GameManager.gd"
-AudioManager="*res://GDScripts/Global/AudioManager.gd"
 
 [display]
 

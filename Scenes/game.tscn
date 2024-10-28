@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1ghchp5wgott"]
+[gd_scene load_steps=8 format=3 uid="uid://c1ghchp5wgott"]
 
 [ext_resource type="Script" path="res://GDScripts/floor.gd" id="1_lypt3"]
 [ext_resource type="PackedScene" uid="uid://b2u382a5oyxvh" path="res://Scenes/table.tscn" id="2_rpkw3"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://GDScripts/ray_cast_2d.gd" id="4_mw6q6"]
 [ext_resource type="Script" path="res://GDScripts/score_text.gd" id="5_5j15g"]
 [ext_resource type="PackedScene" uid="uid://dk1rgtf8maf0i" path="res://Scenes/options.tscn" id="6_mj4er"]
-[ext_resource type="PackedScene" uid="uid://e0x1je4ejc0v" path="res://Scenes/audio_manager.tscn" id="7_rtrnr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cay3g"]
 size = Vector2(1611, 138)
@@ -81,7 +80,5 @@ script = ExtResource("5_5j15g")
 
 [node name="Options" parent="CanvasLayer" instance=ExtResource("6_mj4er")]
 process_mode = 3
-
-[node name="AudioManager" parent="." instance=ExtResource("7_rtrnr")]
 
 [connection signal="body_entered" from="FLOOR" to="FLOOR" method="_on_body_entered"]
