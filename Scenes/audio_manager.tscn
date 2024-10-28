@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5wiw4aqfwwhv"]
+
+[ext_resource type="Script" path="res://GDScripts/Global/audio_manager.gd" id="1_oy5s5"]
+[ext_resource type="AudioStream" uid="uid://nhdrnkle26xm" path="res://Art/Audio/SFX/Background_music.mp3" id="2_kdquy"]
+[ext_resource type="AudioStream" uid="uid://dpym8twhbbb53" path="res://Art/Audio/SFX/Object dropped sound.wav" id="3_1pu34"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_oy5s5")
+
+[node name="BACKGROUND_MUSIC" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_kdquy")
+bus = &"Music"
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="STACKABLE_OBJECT_SFX" type="Node" parent="SFX"]
+
+[node name="Release_SFX" type="AudioStreamPlayer" parent="SFX/STACKABLE_OBJECT_SFX"]
+stream = ExtResource("3_1pu34")
+bus = &"SFX"
