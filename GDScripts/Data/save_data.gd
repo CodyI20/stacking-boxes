@@ -7,6 +7,7 @@ class_name SaveData
 @export var high_score_4 := 0
 @export var high_score_5 := 0
 
+
 const SAVE_PATH := "user://saves"
 const HIGHSCORE_FILE_NAME := "high_score_save.tres"
 
