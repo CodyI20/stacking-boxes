@@ -134,6 +134,11 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 text = "BACK"
 
+[node name="MenuButton" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+text = "MENU
+"
+
 [node name="QuitButton" type="Button" parent="ButtonsContainer"]
 layout_mode = 2
 text = "QUIT"
@@ -144,4 +149,5 @@ text = "QUIT"
 [connection signal="value_changed" from="OptionsContainer/Audio/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="OptionsContainer/Audio/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="pressed" from="ButtonsContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ButtonsContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]

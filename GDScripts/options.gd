@@ -97,6 +97,9 @@ func linear2db(linear: float) -> float:
 #region BUTTONS
 func _on_back_button_pressed() -> void:
 	Events.options_menu_toggle.emit(false)
+	
+func _on_menu_button_pressed() -> void:
+	GameManager.go_to_main_menu()
 
 func _on_quit_button_pressed() -> void:
 	GameManager.quit_game()
