@@ -6,6 +6,8 @@ class_name SaveSettings
 @export var resolution_index := 1
 @export var window_mode := DisplayServer.WINDOW_MODE_WINDOWED
 @export var window_mode_index := 1
+@export var v_sync := DisplayServer.VSYNC_DISABLED
+@export var v_sync_bool := false
 @export var master_volume := 100
 @export var music_volume := 100
 @export var sfx_volume := 100

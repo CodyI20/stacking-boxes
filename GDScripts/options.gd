@@ -11,7 +11,7 @@ var SFX_VOLUME_INDEX = AudioServer.get_bus_index("SFX")
 
 @onready var resolutions: OptionButton = $OptionsContainer/Resolution/Resolutions
 @onready var window_modes: OptionButton = $OptionsContainer/Resolution/WindowModes
-@onready var check_button: CheckButton = $OptionsContainer/Resolution/CheckButton
+@onready var v_sync: CheckButton = $"OptionsContainer/Resolution/V-SYNC"
 @onready var master_slider: HSlider = $OptionsContainer/Audio/MasterSlider
 @onready var sfx_slider: HSlider = $OptionsContainer/Audio/SFXSlider
 @onready var music_slider: HSlider = $OptionsContainer/Audio/MusicSlider
@@ -29,6 +29,8 @@ func set_saved_settings() -> void:
 	resolutions.selected = saved_settings.resolution_index
 	DisplayServer.window_set_mode(saved_settings.window_mode)
 	window_modes.selected = saved_settings.window_mode_index
+	DisplayServer.window_set_vsync_mode(saved_settings.v_sync)
+	v_sync.button_pressed = saved_settings.v_sync_bool
 	AudioServer.set_bus_volume_db(MASTER_VOLUME_INDEX, linear2db(clamp(saved_settings.master_volume/100, 0.0, 1.0)))
 	master_slider.value = saved_settings.master_volume
 	AudioServer.set_bus_volume_db(MUSIC_VOLUME_INDEX, linear2db(clamp(saved_settings.music_volume/100, 0.0, 1.0)))
@@ -40,7 +42,7 @@ func toggle_menu(enabled: bool) -> void:
 	visible = enabled
 	set_process(enabled)
 
-#region RESOLUTION SETTINGS
+#region VIDEO SETTINGS
 func _on_resolutions_item_selected(index: int) -> void:
 	var res_vector = Vector2i(1920,1080) # Safe guard default resolution
 	match index:
@@ -66,6 +68,16 @@ func _on_window_modes_item_selected(index: int) -> void:
 	saved_settings.window_mode = window_mode
 	saved_settings.window_mode_index = index
 	saved_settings.save()
+
+func _on_vsync_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+		saved_settings.v_sync = DisplayServer.VSYNC_ENABLED
+	else:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+		saved_settings.v_sync = DisplayServer.VSYNC_DISABLED
+	saved_settings.v_sync_bool = toggled_on
+	saved_settings.save()
 #endregion
 #region SOUND SETTINGS
 
@@ -75,7 +87,6 @@ func change_volume_db(index: int, input_value: float) -> void:
 
 func _on_master_slider_value_changed(value: float) -> void:
 	saved_settings.master_volume = value
-	print_debug(saved_settings.master_volume)
 	saved_settings.save()
 	change_volume_db(MASTER_VOLUME_INDEX, value)
 

@@ -71,13 +71,13 @@ popup/item_0/text = "Fullscreen"
 popup/item_1/text = "Windowed"
 popup/item_1/id = 1
 
-[node name="FullscreenText2" type="RichTextLabel" parent="OptionsContainer/Resolution"]
+[node name="V-SYNCText" type="RichTextLabel" parent="OptionsContainer/Resolution"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[b] V-SYNC"
 fit_content = true
 
-[node name="CheckButton" type="CheckButton" parent="OptionsContainer/Resolution"]
+[node name="V-SYNC" type="CheckButton" parent="OptionsContainer/Resolution"]
 layout_mode = 2
 button_pressed = true
 
@@ -145,6 +145,7 @@ text = "QUIT"
 
 [connection signal="item_selected" from="OptionsContainer/Resolution/Resolutions" to="." method="_on_resolutions_item_selected"]
 [connection signal="item_selected" from="OptionsContainer/Resolution/WindowModes" to="." method="_on_window_modes_item_selected"]
+[connection signal="toggled" from="OptionsContainer/Resolution/V-SYNC" to="." method="_on_vsync_toggled"]
 [connection signal="value_changed" from="OptionsContainer/Audio/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="OptionsContainer/Audio/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="OptionsContainer/Audio/MusicSlider" to="." method="_on_music_slider_value_changed"]
