@@ -1,64 +1,69 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1ghchp5wgott"]
+[gd_scene load_steps=9 format=3 uid="uid://c1ghchp5wgott"]
 
+[ext_resource type="Script" path="res://GDScripts/Global/GameManager.gd" id="1_11u5f"]
 [ext_resource type="Script" path="res://GDScripts/floor.gd" id="1_lypt3"]
 [ext_resource type="PackedScene" uid="uid://b2u382a5oyxvh" path="res://Scenes/table.tscn" id="2_rpkw3"]
 [ext_resource type="Script" path="res://GDScripts/stackable_object_spawner.gd" id="3_gklty"]
 [ext_resource type="Script" path="res://GDScripts/ray_cast_2d.gd" id="4_mw6q6"]
 [ext_resource type="Script" path="res://GDScripts/score_text.gd" id="5_5j15g"]
-[ext_resource type="PackedScene" uid="uid://dk1rgtf8maf0i" path="res://Scenes/options.tscn" id="6_mj4er"]
+[ext_resource type="PackedScene" uid="uid://dwoybiejqaab3" path="res://Scenes/pause_menu.tscn" id="6_0jaww"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cay3g"]
 size = Vector2(1611, 138)
 
 [node name="Game" type="Node2D"]
 process_mode = 3
+script = ExtResource("1_11u5f")
 
-[node name="FLOOR" type="Area2D" parent="."]
+[node name="Level" type="Node2D" parent="."]
+process_mode = 1
+
+[node name="FLOOR" type="Area2D" parent="Level"]
 position = Vector2(608, 577)
 collision_mask = 2
 script = ExtResource("1_lypt3")
 
-[node name="Polygon2D" type="Polygon2D" parent="FLOOR"]
+[node name="Polygon2D" type="Polygon2D" parent="Level/FLOOR"]
 scale = Vector2(1.93743, 0.98787)
 color = Color(0.400255, 0.0709865, 0.0012618, 1)
 offset = Vector2(-580.376, -50.1272)
 polygon = PackedVector2Array(165.362, -1, 165.362, 119, 991.645, 122, 991.645, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FLOOR"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/FLOOR"]
 position = Vector2(-3, 7)
 shape = SubResource("RectangleShape2D_cay3g")
 
-[node name="TABLE" parent="." instance=ExtResource("2_rpkw3")]
+[node name="TABLE" parent="Level" instance=ExtResource("2_rpkw3")]
 position = Vector2(380, 448)
 collision_mask = 2
 
-[node name="TABLE2" parent="." instance=ExtResource("2_rpkw3")]
+[node name="TABLE2" parent="Level" instance=ExtResource("2_rpkw3")]
 position = Vector2(395, 337)
 rotation = 1.58504
 collision_mask = 2
 
-[node name="TABLE3" parent="." instance=ExtResource("2_rpkw3")]
+[node name="TABLE3" parent="Level" instance=ExtResource("2_rpkw3")]
 position = Vector2(785, 348)
 rotation = -0.554126
 scale = Vector2(0.0740623, 0.218966)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="Level"]
 position = Vector2(1419, 437)
 target_position = Vector2(-2000, 0)
 collision_mask = 2
 script = ExtResource("4_mw6q6")
 
-[node name="Camera2D" type="Camera2D" parent="RayCast2D"]
+[node name="Camera2D" type="Camera2D" parent="Level/RayCast2D"]
 position = Vector2(-844, -114)
 
-[node name="StackableObjectSpawner" type="Node2D" parent="RayCast2D"]
+[node name="StackableObjectSpawner" type="Node2D" parent="Level/RayCast2D"]
 position = Vector2(-852, -222)
 script = ExtResource("3_gklty")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="RayCast2D"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Level/RayCast2D"]
 follow_viewport_scale = 0.001
 
-[node name="RichTextLabel" type="RichTextLabel" parent="RayCast2D/CanvasLayer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Level/RayCast2D/CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.905
 anchor_top = 0.644
@@ -74,11 +79,11 @@ bbcode_enabled = true
 fit_content = true
 script = ExtResource("5_5j15g")
 
-[node name="SpawnedObjectsContainer" type="Node2D" parent="."]
+[node name="SpawnedObjectsContainer" type="Node2D" parent="Level"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="WhenPausedGUI" type="CanvasLayer" parent="Level"]
+process_mode = 2
 
-[node name="Options" parent="CanvasLayer" instance=ExtResource("6_mj4er")]
-process_mode = 3
+[node name="PauseMenu" parent="Level/WhenPausedGUI" instance=ExtResource("6_0jaww")]
 
-[connection signal="body_entered" from="FLOOR" to="FLOOR" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/FLOOR" to="Level/FLOOR" method="_on_body_entered"]

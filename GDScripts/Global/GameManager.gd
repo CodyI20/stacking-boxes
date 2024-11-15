@@ -4,30 +4,28 @@ extends Node
 var window_mode := DisplayServer.WINDOW_MODE_WINDOWED
 var resolution := Vector2i(1280,720)
 
-func _process(delta: float) -> void:
-	enable_options_menu_key_check()
+var NoResume := false
+var NoPause := false
+
+func _ready() -> void:
+	Events.options_menu_toggle.connect(handle_options_menu_toggle)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if NoResume:
+		NoResume = false
+		return
+	if NoPause:
+		NoPause = false
+		return
+	if event.is_action_pressed("Esc"):
+		Utility.pause_game(!get_tree().paused)
 		
-# OVERLAY TOGGLE
-func enable_options_menu() -> void:
-	Events.options_menu_toggle.emit(true)
+func handle_options_menu_toggle(is_on: bool) -> void:
+	if is_on:
+		no_resume()
 	
-func enable_options_menu_key_check() -> void:
-	if Input.is_action_just_pressed("Esc"):
-		enable_options_menu()
-		
-
-# SCENE SWAPPING LOGIC
-func go_to_main_menu() -> void:
-	get_tree().call_deferred("change_scene_to_file", "res://Scenes/main_menu.tscn")
-
-func retry_level() -> void:
-	get_tree().call_deferred("change_scene_to_file", "res://Scenes/game.tscn")
-
-func go_to_high_score_scene() -> void:
-	get_tree().call_deferred("change_scene_to_file", "res://Scenes/highscore.tscn")
-
-func go_to_game_scene() -> void:
-	get_tree().call_deferred("change_scene_to_file", "res://Scenes/game.tscn")
-
-func quit_game() -> void:
-	get_tree().quit()
+func no_resume() -> void:
+	NoResume = true
+	
+func no_pause() -> void:
+	NoPause = true

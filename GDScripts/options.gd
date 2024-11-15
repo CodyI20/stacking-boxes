@@ -24,11 +24,16 @@ func _ready() -> void:
 	set_saved_settings()
 	toggle_menu(false)
 	
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("Esc"):
+		Utility.toggle_options_menu(false)
+	
 func set_saved_settings() -> void:
 	DisplayServer.window_set_size(saved_settings.resolution)
 	resolutions.selected = saved_settings.resolution_index
 	DisplayServer.window_set_mode(saved_settings.window_mode)
 	window_modes.selected = saved_settings.window_mode_index
+	center_window(window_modes.selected)
 	DisplayServer.window_set_vsync_mode(saved_settings.v_sync)
 	v_sync.button_pressed = saved_settings.v_sync_bool
 	AudioServer.set_bus_volume_db(MASTER_VOLUME_INDEX, linear2db(clamp(saved_settings.master_volume/100, 0.0, 1.0)))
@@ -52,6 +57,12 @@ func _on_resolutions_item_selected(index: int) -> void:
 			res_vector = Vector2i(1280,720)
 	
 	DisplayServer.window_set_size(res_vector)
+	
+	# Center the window
+	var screen_size = DisplayServer.screen_get_size()
+	var window_pos = (screen_size - res_vector) / 2
+	DisplayServer.window_set_position(window_pos)
+	
 	saved_settings.resolution = res_vector
 	saved_settings.resolution_index = index
 	saved_settings.save()
@@ -65,9 +76,20 @@ func _on_window_modes_item_selected(index: int) -> void:
 			DisplayServer.WINDOW_MODE_WINDOWED
 	
 	DisplayServer.window_set_mode(window_mode)
+	
+	center_window(window_mode)
+	
 	saved_settings.window_mode = window_mode
 	saved_settings.window_mode_index = index
 	saved_settings.save()
+
+func center_window(window_mode) -> void:
+	# Center the window
+	if window_mode == DisplayServer.WINDOW_MODE_WINDOWED:
+		var window_size = DisplayServer.window_get_size()
+		var screen_size = DisplayServer.screen_get_size()
+		var window_position = (screen_size - window_size) / 2
+		DisplayServer.window_set_position(window_position)
 
 func _on_vsync_toggled(toggled_on: bool) -> void:
 	if toggled_on:
@@ -110,8 +132,8 @@ func _on_back_button_pressed() -> void:
 	Events.options_menu_toggle.emit(false)
 	
 func _on_menu_button_pressed() -> void:
-	GameManager.go_to_main_menu()
+	Utility.go_to_main_menu()
 
 func _on_quit_button_pressed() -> void:
-	GameManager.quit_game()
+	Utility.quit_game()
 #endregion

@@ -24,8 +24,8 @@ buses/default_bus_layout="res://Art/Audio/default_bus_layout.tres"
 
 Events="*res://GDScripts/Global/Events.gd"
 MatchData="*res://GDScripts/Global/MatchData.gd"
-GameManager="*res://GDScripts/Global/GameManager.gd"
 AudioManager="*res://Scenes/audio_manager.tscn"
+Utility="*res://GDScripts/Global/Utility.gd"
 
 [display]
 
