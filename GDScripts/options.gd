@@ -103,6 +103,9 @@ func _on_sfx_slider_value_changed(value: float) -> void:
 	saved_settings.sfx_volume = value
 	saved_settings.save()
 	change_volume_db(SFX_VOLUME_INDEX, value)
+	
+func _on_sfx_slider_drag_ended(value_changed: bool) -> void:
+	Events.sfx_slider_value_set.emit()
 
 func _on_music_slider_value_changed(value: float) -> void:
 	saved_settings.music_volume = value

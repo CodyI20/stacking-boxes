@@ -1,5 +1,8 @@
 extends Node
 
+# OPTIONS MENU FEEDBACK
+signal sfx_slider_value_set()
+
 # STACKABLE OBJECT
 signal object_released(object: Node2D)
 signal object_hit_safe_ground(object: Node2D)

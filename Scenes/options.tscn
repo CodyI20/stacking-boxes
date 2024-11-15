@@ -75,6 +75,7 @@ layout_mode = 2
 text = "QUIT"
 
 [connection signal="value_changed" from="SettingsTabContainer/TabContainer/Sound/MarginContainer/VBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="drag_ended" from="SettingsTabContainer/TabContainer/Sound/MarginContainer/VBoxContainer/SFXSlider" to="." method="_on_sfx_slider_drag_ended"]
 [connection signal="value_changed" from="SettingsTabContainer/TabContainer/Sound/MarginContainer/VBoxContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="SettingsTabContainer/TabContainer/Sound/MarginContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="item_selected" from="SettingsTabContainer/TabContainer/Graphics/MarginContainer/VBoxContainer/Resolutions" to="." method="_on_resolutions_item_selected"]
