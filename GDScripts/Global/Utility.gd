@@ -15,10 +15,13 @@ func pause_game(shouldPause := false):
 func toggle_options_menu(is_active : bool) -> void:
 	Events.options_menu_toggle.emit(is_active)
 
-func retry_level() -> void:
+func reload_scene() -> void:
 	MatchData.reset_score()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+func retry_level() -> void:
+	get_tree().call_deferred("change_scene_to_file", "res://Scenes/game.tscn")
 
 func go_to_high_score_scene() -> void:
 	get_tree().call_deferred("change_scene_to_file", "res://Scenes/highscore.tscn")

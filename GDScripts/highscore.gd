@@ -1,7 +1,6 @@
 extends Control
 
 
-
 func _on_retry_button_pressed() -> void:
 	Utility.retry_level()
 

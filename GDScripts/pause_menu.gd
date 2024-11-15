@@ -25,7 +25,7 @@ func _on_resume_button_pressed() -> void:
 
 
 func _on_restart_button_pressed() -> void:
-	Utility.retry_level()
+	Utility.reload_scene()
 
 
 func _on_options_button_pressed() -> void:
