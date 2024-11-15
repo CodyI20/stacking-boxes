@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://b4mfu0ifno2bj"]
+
+[node name="SettingsTabContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="Sound" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Sound"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="MasterVolume" type="RichTextLabel" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b] Master Volume
+"
+fit_content = true
+
+[node name="MasterSlider" type="HSlider" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 100.0
+
+[node name="SFXVolume" type="RichTextLabel" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b] SFX Volume
+"
+fit_content = true
+
+[node name="SFXSlider" type="HSlider" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 100.0
+
+[node name="MusicVolume" type="RichTextLabel" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b] Music Volume
+"
+fit_content = true
+
+[node name="MusicSlider" type="HSlider" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 100.0
+
+[node name="Graphics" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Graphics/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ResolutionText" type="RichTextLabel" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b] Resolution"
+fit_content = true
+
+[node name="Resolutions" type="OptionButton" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+layout_mode = 2
+selected = 1
+item_count = 2
+popup/item_0/text = "1920x1080"
+popup/item_1/text = "1280x720"
+popup/item_1/id = 1
+
+[node name="FullscreenText" type="RichTextLabel" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b] Window mode"
+fit_content = true
+
+[node name="WindowModes" type="OptionButton" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+layout_mode = 2
+selected = 1
+item_count = 2
+popup/item_0/text = "Fullscreen"
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
+
+[node name="V-SYNCText" type="RichTextLabel" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b] V-SYNC"
+fit_content = true
+
+[node name="V-SYNC" type="CheckButton" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Controls" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1

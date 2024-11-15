@@ -1,13 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk1rgtf8maf0i"]
+[gd_scene load_steps=5 format=3 uid="uid://dk1rgtf8maf0i"]
 
 [ext_resource type="Script" path="res://GDScripts/options.gd" id="1_8iwmn"]
 [ext_resource type="Shader" path="res://Art/Shaders/PauseMenu.gdshader" id="2_2g48d"]
+[ext_resource type="PackedScene" uid="uid://b4mfu0ifno2bj" path="res://Scenes/settings_tab_container.tscn" id="3_wrwmt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ay1a2"]
 shader = ExtResource("2_2g48d")
 shader_parameter/lod = 0.8
 
-[node name="Options" type="Control"]
+[node name="Options" type="Control" node_paths=PackedStringArray("resolutions", "window_modes", "v_sync", "master_slider", "sfx_slider", "music_slider")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +16,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8iwmn")
+resolutions = NodePath("SettingsTabContainer/TabContainer/Graphics/MarginContainer/VBoxContainer/Resolutions")
+window_modes = NodePath("SettingsTabContainer/TabContainer/Graphics/MarginContainer/VBoxContainer/WindowModes")
+v_sync = NodePath("SettingsTabContainer/TabContainer/Graphics/MarginContainer/VBoxContainer/V-SYNC")
+master_slider = NodePath("SettingsTabContainer/TabContainer/Sound/MarginContainer/VBoxContainer/MasterSlider")
+sfx_slider = NodePath("SettingsTabContainer/TabContainer/Sound/MarginContainer/VBoxContainer/SFXSlider")
+music_slider = NodePath("SettingsTabContainer/TabContainer/Sound/MarginContainer/VBoxContainer/MusicSlider")
 
 [node name="Blur" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_ay1a2")
@@ -25,124 +32,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="SettingsTabContainer" parent="." instance=ExtResource("3_wrwmt")]
+layout_mode = 1
+
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.517188
-anchor_top = 0.102
-anchor_right = 0.517188
-anchor_bottom = 0.102
-offset_left = -75.8
-offset_top = -27.096
-offset_right = 75.2
-offset_bottom = 26.904
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.5
+offset_right = 75.5
+offset_bottom = 54.0
 grow_horizontal = 2
 bbcode_enabled = true
 text = "[b][color=GREEN][wave amp = 0.01 frequency=0.2][font_size=30] OPTIONS"
-metadata/_edit_use_anchors_ = true
-
-[node name="OptionsContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.515
-anchor_top = 0.5
-anchor_right = 0.515
-anchor_bottom = 0.5
-offset_left = -328.199
-offset_top = -224.0
-offset_right = 328.801
-offset_bottom = 205.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Resolution" type="VBoxContainer" parent="OptionsContainer"]
-layout_mode = 2
-
-[node name="ResolutionText" type="RichTextLabel" parent="OptionsContainer/Resolution"]
-layout_mode = 2
-bbcode_enabled = true
-text = "[b] Resolution"
-fit_content = true
-
-[node name="Resolutions" type="OptionButton" parent="OptionsContainer/Resolution"]
-layout_mode = 2
-selected = 1
-item_count = 2
-popup/item_0/text = "1920x1080"
-popup/item_1/text = "1280x720"
-popup/item_1/id = 1
-
-[node name="FullscreenText" type="RichTextLabel" parent="OptionsContainer/Resolution"]
-layout_mode = 2
-bbcode_enabled = true
-text = "[b] Window mode"
-fit_content = true
-
-[node name="WindowModes" type="OptionButton" parent="OptionsContainer/Resolution"]
-layout_mode = 2
-selected = 1
-item_count = 2
-popup/item_0/text = "Fullscreen"
-popup/item_1/text = "Windowed"
-popup/item_1/id = 1
-
-[node name="V-SYNCText" type="RichTextLabel" parent="OptionsContainer/Resolution"]
-layout_mode = 2
-bbcode_enabled = true
-text = "[b] V-SYNC"
-fit_content = true
-
-[node name="V-SYNC" type="CheckButton" parent="OptionsContainer/Resolution"]
-layout_mode = 2
-button_pressed = true
-
-[node name="Audio" type="VBoxContainer" parent="OptionsContainer"]
-layout_mode = 2
-
-[node name="MasterVolume" type="RichTextLabel" parent="OptionsContainer/Audio"]
-layout_mode = 2
-bbcode_enabled = true
-text = "[b] Master Volume
-"
-fit_content = true
-
-[node name="MasterSlider" type="HSlider" parent="OptionsContainer/Audio"]
-layout_mode = 2
-value = 100.0
-
-[node name="SFXVolume" type="RichTextLabel" parent="OptionsContainer/Audio"]
-layout_mode = 2
-bbcode_enabled = true
-text = "[b] SFX Volume
-"
-fit_content = true
-
-[node name="SFXSlider" type="HSlider" parent="OptionsContainer/Audio"]
-layout_mode = 2
-value = 100.0
-
-[node name="MusicVolume" type="RichTextLabel" parent="OptionsContainer/Audio"]
-layout_mode = 2
-bbcode_enabled = true
-text = "[b] Music Volume
-"
-fit_content = true
-
-[node name="MusicSlider" type="HSlider" parent="OptionsContainer/Audio"]
-layout_mode = 2
-value = 100.0
 
 [node name="ButtonsContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.507
-anchor_top = 0.85
-anchor_right = 0.507
-anchor_bottom = 0.85
-offset_left = -88.96
-offset_top = -33.0
-offset_right = 90.04
-offset_bottom = 33.0
-metadata/_edit_use_anchors_ = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -103.0
+offset_top = -104.0
+offset_right = 104.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="BackButton" type="Button" parent="ButtonsContainer"]
 layout_mode = 2
@@ -157,12 +74,14 @@ text = "MENU
 layout_mode = 2
 text = "QUIT"
 
-[connection signal="item_selected" from="OptionsContainer/Resolution/Resolutions" to="." method="_on_resolutions_item_selected"]
-[connection signal="item_selected" from="OptionsContainer/Resolution/WindowModes" to="." method="_on_window_modes_item_selected"]
-[connection signal="toggled" from="OptionsContainer/Resolution/V-SYNC" to="." method="_on_vsync_toggled"]
-[connection signal="value_changed" from="OptionsContainer/Audio/MasterSlider" to="." method="_on_master_slider_value_changed"]
-[connection signal="value_changed" from="OptionsContainer/Audio/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="value_changed" from="OptionsContainer/Audio/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="SettingsTabContainer/TabContainer/Sound/MarginContainer/VBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="SettingsTabContainer/TabContainer/Sound/MarginContainer/VBoxContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="SettingsTabContainer/TabContainer/Sound/MarginContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="item_selected" from="SettingsTabContainer/TabContainer/Graphics/MarginContainer/VBoxContainer/Resolutions" to="." method="_on_resolutions_item_selected"]
+[connection signal="item_selected" from="SettingsTabContainer/TabContainer/Graphics/MarginContainer/VBoxContainer/WindowModes" to="." method="_on_window_modes_item_selected"]
+[connection signal="toggled" from="SettingsTabContainer/TabContainer/Graphics/MarginContainer/VBoxContainer/V-SYNC" to="." method="_on_vsync_toggled"]
 [connection signal="pressed" from="ButtonsContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="ButtonsContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+
+[editable path="SettingsTabContainer"]

@@ -9,12 +9,12 @@ var MUSIC_VOLUME_INDEX = AudioServer.get_bus_index("Music")
 var SFX_VOLUME_INDEX = AudioServer.get_bus_index("SFX")
 #endregion
 
-@onready var resolutions: OptionButton = $OptionsContainer/Resolution/Resolutions
-@onready var window_modes: OptionButton = $OptionsContainer/Resolution/WindowModes
-@onready var v_sync: CheckButton = $"OptionsContainer/Resolution/V-SYNC"
-@onready var master_slider: HSlider = $OptionsContainer/Audio/MasterSlider
-@onready var sfx_slider: HSlider = $OptionsContainer/Audio/SFXSlider
-@onready var music_slider: HSlider = $OptionsContainer/Audio/MusicSlider
+@export var resolutions: OptionButton
+@export var window_modes: OptionButton
+@export var v_sync: CheckButton
+@export var master_slider: HSlider
+@export var sfx_slider: HSlider
+@export var music_slider: HSlider
 
 
 # Called when the node enters the scene tree for the first time.
@@ -33,7 +33,6 @@ func set_saved_settings() -> void:
 	resolutions.selected = saved_settings.resolution_index
 	DisplayServer.window_set_mode(saved_settings.window_mode)
 	window_modes.selected = saved_settings.window_mode_index
-	center_window(window_modes.selected)
 	DisplayServer.window_set_vsync_mode(saved_settings.v_sync)
 	v_sync.button_pressed = saved_settings.v_sync_bool
 	AudioServer.set_bus_volume_db(MASTER_VOLUME_INDEX, linear2db(clamp(saved_settings.master_volume/100, 0.0, 1.0)))
@@ -58,11 +57,6 @@ func _on_resolutions_item_selected(index: int) -> void:
 	
 	DisplayServer.window_set_size(res_vector)
 	
-	# Center the window
-	var screen_size = DisplayServer.screen_get_size()
-	var window_pos = (screen_size - res_vector) / 2
-	DisplayServer.window_set_position(window_pos)
-	
 	saved_settings.resolution = res_vector
 	saved_settings.resolution_index = index
 	saved_settings.save()
@@ -73,23 +67,16 @@ func _on_window_modes_item_selected(index: int) -> void:
 		0:
 			window_mode = DisplayServer.WINDOW_MODE_FULLSCREEN
 		1:
-			DisplayServer.WINDOW_MODE_WINDOWED
+			window_mode = DisplayServer.WINDOW_MODE_WINDOWED
 	
 	DisplayServer.window_set_mode(window_mode)
-	
-	center_window(window_mode)
+	DisplayServer.window_set_size(saved_settings.resolution)
+
 	
 	saved_settings.window_mode = window_mode
 	saved_settings.window_mode_index = index
 	saved_settings.save()
 
-func center_window(window_mode) -> void:
-	# Center the window
-	if window_mode == DisplayServer.WINDOW_MODE_WINDOWED:
-		var window_size = DisplayServer.window_get_size()
-		var screen_size = DisplayServer.screen_get_size()
-		var window_position = (screen_size - window_size) / 2
-		DisplayServer.window_set_position(window_position)
 
 func _on_vsync_toggled(toggled_on: bool) -> void:
 	if toggled_on:
