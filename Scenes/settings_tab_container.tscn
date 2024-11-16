@@ -108,7 +108,7 @@ fit_content = true
 
 [node name="Resolutions" type="OptionButton" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
 layout_mode = 2
-selected = 1
+selected = 2
 item_count = 4
 popup/item_0/text = "2560x1440"
 popup/item_1/text = "1920x1080"
@@ -131,7 +131,7 @@ item_count = 3
 popup/item_0/text = "Fullscreen"
 popup/item_1/text = "Windowed"
 popup/item_1/id = 1
-popup/item_2/text = "BorderlessWindowed"
+popup/item_2/text = "Borderless Windowed"
 popup/item_2/id = 2
 
 [node name="V-SYNCText" type="RichTextLabel" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]

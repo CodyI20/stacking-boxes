@@ -54,7 +54,7 @@ func toggle_menu(enabled: bool) -> void:
 
 #region VIDEO SETTINGS
 func _on_resolutions_item_selected(index: int) -> void:
-	var res_vector = Vector2i(1920,1080) # Safe guard default resolution
+	var res_vector = Vector2i(1280,720) # Safe guard default resolution
 	match index:
 		0:
 			res_vector = Vector2i(2560,1440)
