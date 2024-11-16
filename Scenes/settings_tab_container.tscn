@@ -23,7 +23,7 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 2
+current_tab = 1
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
 visible = false
@@ -81,7 +81,6 @@ layout_mode = 2
 value = 100.0
 
 [node name="Graphics" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -110,10 +109,14 @@ fit_content = true
 [node name="Resolutions" type="OptionButton" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
 layout_mode = 2
 selected = 1
-item_count = 2
-popup/item_0/text = "1920x1080"
-popup/item_1/text = "1280x720"
+item_count = 4
+popup/item_0/text = "2560x1440"
+popup/item_1/text = "1920x1080"
 popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 2
+popup/item_3/text = "1024x768"
+popup/item_3/id = 3
 
 [node name="FullscreenText" type="RichTextLabel" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -124,10 +127,12 @@ fit_content = true
 [node name="WindowModes" type="OptionButton" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
 layout_mode = 2
 selected = 1
-item_count = 2
+item_count = 3
 popup/item_0/text = "Fullscreen"
 popup/item_1/text = "Windowed"
 popup/item_1/id = 1
+popup/item_2/text = "BorderlessWindowed"
+popup/item_2/id = 2
 
 [node name="V-SYNCText" type="RichTextLabel" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -140,6 +145,7 @@ layout_mode = 2
 button_pressed = true
 
 [node name="Controls" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
