@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://b4mfu0ifno2bj"]
+[gd_scene load_steps=3 format=3 uid="uid://b4mfu0ifno2bj"]
+
+[ext_resource type="PackedScene" uid="uid://bo4srj02jhke3" path="res://Scenes/input_button.tscn" id="1_75bsl"]
+[ext_resource type="Script" path="res://GDScripts/input_settings_container.gd" id="1_hadoi"]
 
 [node name="SettingsTabContainer" type="Control"]
 layout_mode = 3
@@ -20,9 +23,10 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 0
+current_tab = 2
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -136,11 +140,10 @@ layout_mode = 2
 button_pressed = true
 
 [node name="Controls" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Controls"]
+[node name="InputSettingsContainer" type="MarginContainer" parent="TabContainer/Controls"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -151,8 +154,27 @@ theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
+script = ExtResource("1_hadoi")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/InputSettingsContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Controls/InputSettingsContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionList" type="VBoxContainer" parent="TabContainer/Controls/InputSettingsContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputButton" parent="TabContainer/Controls/InputSettingsContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("1_75bsl")]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="TabContainer/Controls/InputSettingsContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Reset to default"
+
+[connection signal="pressed" from="TabContainer/Controls/InputSettingsContainer/VBoxContainer/ResetButton" to="TabContainer/Controls/InputSettingsContainer" method="_on_reset_button_pressed"]
