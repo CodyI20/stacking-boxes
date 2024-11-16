@@ -6,7 +6,7 @@ extends RigidBody2D
 var object_released := false
 var object_entered_safe_area := false
 
-var static_turn_time := 0.3
+var static_turn_time := 0.25
 var timer := 0.0
 
 func _ready() -> void:
@@ -62,7 +62,6 @@ func make_static() -> void:
 
 func freeze_object_process(delta: float) -> void:
 	if object_entered_safe_area == true:
-		linear_damp += 0.005
 		if linear_velocity.length() <= 2.0 and abs(angular_velocity) <= 1.0:
 			timer += delta
 		#print_debug("SAFE AREA TRUE ... PROCEED TO FREEZING LOGIC")

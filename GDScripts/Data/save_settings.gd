@@ -1,16 +1,21 @@
 extends Resource
 class_name SaveSettings
 
-# SETTINGS
+# SETTINGS - GRAPHICS
 @export var resolution := Vector2i(1280,720)
 @export var resolution_index := 1
 @export var window_mode := DisplayServer.WINDOW_MODE_WINDOWED
 @export var window_mode_index := 1
 @export var v_sync := DisplayServer.VSYNC_DISABLED
 @export var v_sync_bool := false
+
+# SETTINGS - AUDIO
 @export var master_volume := 100
 @export var music_volume := 100
 @export var sfx_volume := 100
+
+# SETTINGS - CONTROLS
+@export var action_keys_remapped : Dictionary
 
 const SAVE_PATH := "user://"
 const SETTINGS_FILE_NAME := "settings.tres"

@@ -8,11 +8,14 @@ func _ready() -> void:
 	Events.toggle_game_state.connect(on_game_state_change)
 	Events.options_menu_toggle.connect(toggle_pause_container)
 	animation_player.play("RESET")
+	visible = false
 	
 func on_game_state_change(is_paused : bool) -> void:
 	if is_paused:
+		visible = true
 		animation_player.play("Blur")
 	else:
+		visible = false
 		animation_player.play_backwards("Blur")
 
 func toggle_pause_container(turn_on: bool) -> void:

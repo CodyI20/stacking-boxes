@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwoybiejqaab3"]
+[gd_scene load_steps=9 format=3 uid="uid://dwoybiejqaab3"]
 
 [ext_resource type="Script" path="res://GDScripts/pause_menu.gd" id="1_1ciin"]
 [ext_resource type="Shader" path="res://Art/Shaders/PauseMenu.gdshader" id="1_gmfd4"]
@@ -7,6 +7,11 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ay1a2"]
 shader = ExtResource("1_gmfd4")
 shader_parameter/lod = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_qkxp0"]
+font_size = 40
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_b1v4b"]
 resource_name = "Blur"
@@ -119,6 +124,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="PausedLabel" type="Label" parent="Pause"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_qkxp0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Panel" type="Panel" parent="Pause"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -177,6 +196,7 @@ libraries = {
 }
 
 [node name="Options" parent="." instance=ExtResource("3_abpgv")]
+visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="Pause/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

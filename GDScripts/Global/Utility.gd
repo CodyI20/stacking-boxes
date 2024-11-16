@@ -1,8 +1,15 @@
 extends Node
 
+# SETTINGS - INPUT ACTIONS TO REMAP
+var input_actions = {
+	"Right" : "Right",
+	"Left" : "Left",
+	"Space" : "Release Object"
+}
 
 # SCENE SWAPPING LOGIC
 func go_to_main_menu() -> void:
+	reload_scene()
 	get_tree().call_deferred("change_scene_to_file", "res://Scenes/main_menu.tscn")
 	
 ## This function handles both the pausing/resuming of the game and the event firing (emitting signals)
@@ -16,7 +23,7 @@ func toggle_options_menu(is_active : bool) -> void:
 	Events.options_menu_toggle.emit(is_active)
 
 func reload_scene() -> void:
-	MatchData.reset_score()
+	Events.game_over.emit()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
