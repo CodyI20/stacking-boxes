@@ -7,3 +7,10 @@ It follows programming principles such as:
  - Robustness
  - Scalibility
  - Modularity
+
+Below you can find screenshots of the game:
+![Options menu](https://github.com/user-attachments/assets/13db7828-da1d-4dde-b382-a388b88eb938)
+
+![Gameplay](https://github.com/user-attachments/assets/967681cc-5f7a-47a1-aa81-424259861a87)
+
+![Highscore](https://github.com/user-attachments/assets/f10315a0-c9f2-4b25-a266-4d0fb250d704)
